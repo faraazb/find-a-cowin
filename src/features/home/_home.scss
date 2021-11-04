@@ -1,0 +1,51 @@
+// @import "~@blueprintjs/core/src/common/variables";
+// // @import "~@blueprintjs/core/src/common/mixins";
+@import "~bulma/sass/utilities/_all.sass";
+// @import "~bulma/sass/helpers/_all.sass";
+// @import "~bulma/sass/grid/columns.sass";
+
+#home {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // margin-top: 10%;
+
+    // @include mobile {
+    //     margin-top: 35%;
+    // }
+}
+
+.home-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-title {
+    font-family: 'VictorMono NF';
+    font-style: italic;
+}
+
+.home-links {
+    margin: 20px 0;
+}
+
+
+.home-help {
+    max-width: 75%;
+    @include mobile {
+        max-width: 85%;
+    }
+}
+
+.home-help-title {
+    margin-top: 200px;
+}
+

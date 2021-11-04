@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@import "../node_modules/bulma/sass/utilities/_all.sass";
+@import "../node_modules/bulma/sass/grid/columns.sass";
+@import "~@blueprintjs/core/src/common/variables";
+// @import "~@blueprintjs/core/src/common/variables";
+// @import "~@blueprintjs/core/src/common/mixins";
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+#find-a-cowin {
+    text-decoration: none;
+}
+
+.app-route {
+    overflow-y: scroll;
+    flex-grow: 1;
+
+    .#{$ns}-dark & {
+        background-color: $pt-dark-app-background-color;
+    }
+}
+
+.navigation-header {
+    font-family: 'VictorMono NF';
+    font-style: italic;
+}
