@@ -1,6 +1,7 @@
 {
   "name": "find-a-cowin",
   "version": "0.1.0",
+  "homepage": "https://fraaaz.github.io/find-a-cowin/",
   "dependencies": {
     "@blueprintjs/core": "^3.51.2",
     "@blueprintjs/popover2": "^0.12.7",
