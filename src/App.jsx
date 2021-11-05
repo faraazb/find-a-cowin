@@ -7,6 +7,7 @@ import {BrowserRouter, NavLink, Route, Switch} from "react-router-dom";
 import {FocusStyleManager, Alignment, Button, Classes, Navbar, NavbarDivider, NavbarGroup, 
     NavbarHeading} from "@blueprintjs/core";
 import { Home } from './features/home/Home';
+import { FourOFour } from './features/FourOFour';
 
 
 FocusStyleManager.onlyShowFocusOnTabs();
@@ -66,7 +67,7 @@ function App() {
     });
 
     return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
         <div id="app">
             <Navbar>
                 <NavbarGroup align={Alignment.LEFT}>
@@ -95,8 +96,12 @@ function App() {
                         <Home />
                     </Route>
 
-                    <Route path="/">
+                    <Route exact path="/">
                         <AvailableSlots />
+                    </Route>
+
+                    <Route path="*">
+                        <FourOFour />
                     </Route>
                 </Switch>
             </div>
