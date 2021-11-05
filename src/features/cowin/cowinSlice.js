@@ -73,8 +73,8 @@ const initialState = {
             minAge: null,
             maxAge: null,
 			eighteenAbove: true,
-			eighteenFortyFour: false,
-			fortyFiveAbove: false
+			eighteenFortyFour: true,
+			fortyFiveAbove: true
         }
     },
     sort: {

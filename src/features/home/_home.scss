@@ -1,8 +1,4 @@
-// @import "~@blueprintjs/core/src/common/variables";
-// // @import "~@blueprintjs/core/src/common/mixins";
 @import "~bulma/sass/utilities/_all.sass";
-// @import "~bulma/sass/helpers/_all.sass";
-// @import "~bulma/sass/grid/columns.sass";
 
 #home {
     height: 100%;
@@ -29,8 +25,7 @@
 }
 
 .home-title {
-    font-family: 'VictorMono NF';
-    font-style: italic;
+    font-family: 'VictorMono';
 }
 
 .home-links {
@@ -44,8 +39,3 @@
         max-width: 85%;
     }
 }
-
-.home-help-title {
-    margin-top: 200px;
-}
-
