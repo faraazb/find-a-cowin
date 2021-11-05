@@ -1,5 +1,4 @@
 import { Button, Classes, H1 } from "@blueprintjs/core";
-import { Tooltip2 } from "@blueprintjs/popover2";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./_four-o-four.scss"
