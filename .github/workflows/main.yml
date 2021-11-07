@@ -5,6 +5,7 @@ on:
       - main
     paths-ignore:
       - '**/README.md'
+      - 'src/images/**'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
