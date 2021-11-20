@@ -39,7 +39,7 @@ function CenterCard(props) {
                     {center.fee_type}
                 </Tag>
                 {
-                    center.fee_type==="Paid" &&
+                    center.vaccine_fees &&
                         <div className="vaccine-fee-tags">
                             {center.vaccine_fees.map((vaccine_fee, id) => (
                                 <Tag key={id} className="fee-type">
@@ -51,7 +51,7 @@ function CenterCard(props) {
             </div>
             <div className="center-info-container">
                 <span className="center-info">{center.address}</span>
-                <span className="center-info">[{center.block_name}]</span>
+                <span className="center-info block-name">[{center.block_name}]</span>
             </div>
             <div className="sessions">
                 {content}

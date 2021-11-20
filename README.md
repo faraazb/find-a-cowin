@@ -3,7 +3,7 @@
 # Find-a-CoWIN
 ![build-and-deploy workflow](https://github.com/faraazb/find-a-cowin/actions/workflows/main.yml/badge.svg)
 
-This repository contains the source code for the FInd-a-CoWIN website.
+This repository contains the source code for the Find-a-CoWIN website.
 
 ## What is it?
 Find-a-CoWIN is  a slot **finder/checker** for MoHFW's (India) CoWIN vaccination platform.

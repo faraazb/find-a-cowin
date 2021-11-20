@@ -2,7 +2,7 @@ import './_app.scss';
 import React, {useEffect, useState} from 'react';
 import {useDispatch} from "react-redux";
 import { resetSettings } from './features/settings/settingsSlice';
-import {AvailableSlots} from "./features/finder/Finder";
+import {Finder} from "./features/finder/Finder";
 import {BrowserRouter, NavLink, Route, Switch} from "react-router-dom";
 import {FocusStyleManager, Alignment, Button, Classes, Navbar, NavbarDivider, NavbarGroup, 
     NavbarHeading} from "@blueprintjs/core";
@@ -97,7 +97,7 @@ function App() {
                     </Route>
 
                     <Route exact path="/">
-                        <AvailableSlots />
+                        <Finder />
                     </Route>
 
                     <Route path="*">

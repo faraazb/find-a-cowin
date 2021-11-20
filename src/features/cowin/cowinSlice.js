@@ -136,6 +136,7 @@ export const cowinSlice = createSlice({
         setSelectedState: (state, action) => {
             const { stateName } = action.payload;
             state.selected.stateEnt.stateName = stateName;
+            state.status.calendarByDistrict = 'idle';
             if (action.payload.stateId) {
                 state.selected.stateEnt.stateId = action.payload.stateId;
             }

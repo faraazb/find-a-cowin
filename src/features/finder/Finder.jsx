@@ -6,7 +6,7 @@ import {
     fetchStates,
     resetCalendarByDistrictStore,
     resetDistrictStore, selectAllDistricts,
-    selectAllStates,
+    selectAllStates, selectCalendarByDistrict,
     selectFilteredData,
     selectKeywordFilter,
     selectSelectedDistrict,
@@ -18,7 +18,7 @@ import {
 import "./_finder.scss";
 import { CenterCard } from "./Center";
 import {DistrictSelector2, StateSelector2} from "./Selectors";
-import {Button, Intent, NonIdealState, Spinner, TagInput} from "@blueprintjs/core";
+import {Button, Icon, Intent, NonIdealState, Spinner, TagInput} from "@blueprintjs/core";
 import { FeeTypeFilters } from "./filters/FeeTypeFilters";
 import {formatDate} from "../../utils/DateUtilities";
 import Settings from "../settings/Settings";
@@ -30,7 +30,7 @@ import { FilterPopover } from "./filters/FilterPopover";
 * It also allows filtering by attributes: keywords (center name, center address
 * and center block), fee type (Free/Paid).
 * */
-export function AvailableSlots() {
+export function Finder() {
     const dispatch = useDispatch();
     const calendarFetchStatus = useSelector((state) => state.cowin.status.calendarByDistrict);
     // Use the filtered calendarByDistrict data from the store
@@ -38,6 +38,7 @@ export function AvailableSlots() {
     const districts = useSelector(selectAllDistricts);
     // const centers = useSelector(selectFilteredCalendarByDistrict);
     const centers = useSelector(selectFilteredData);
+    const unfilteredCenters = useSelector(selectCalendarByDistrict)
     const selectedState = useSelector(selectSelectedState);
     const selectedDistrict = useSelector(selectSelectedDistrict);
     const searchInputValues = useSelector(selectKeywordFilter);
@@ -106,18 +107,13 @@ export function AvailableSlots() {
         content = <NonIdealState
             icon={"info-sign"}
             title={"Select State and District"}
-            description={"You will be able to refresh data for a single center without reloading the page."}
-        />
+        ><div>
+            <Icon icon={"lightbulb"} intent={Intent.WARNING}/>
+            Tip: Use the refresh button to refresh the data
+        </div></NonIdealState>
     }
     else if (calendarFetchStatus === "loading") {
         content = <Spinner className={"centers-loading-spinner"} intent={Intent.PRIMARY} size={50} />
-    }
-    else if (calendarFetchStatus === "succeeded" && centers.length === 0) {
-        content = <NonIdealState
-            icon={"issue"}
-            title={"Currently, no slots are available."}
-            description={"Please check again after sometime."}
-        />
     }
     else if (calendarFetchStatus === "succeeded") {
         if (centers.length > 0) {
@@ -129,10 +125,18 @@ export function AvailableSlots() {
             content = <NonIdealState
                 icon={"zoom-out"}
                 title={"No centers match your query."}
-                description={"It might be helpful to divide search into multiple keywords."}
+                description={"It might be helpful to divide your query into multiple keywords."}
             />
         }
-    } else if (calendarFetchStatus === "failed") {
+    }
+    else if (calendarFetchStatus === "succeeded" && unfilteredCenters.length === 0) {
+        content = <NonIdealState
+            icon={"issue"}
+            title={"Currently, no slots are available."}
+            description={"Please check again after sometime."}
+        />
+    }
+    else if (calendarFetchStatus === "failed") {
         content = <NonIdealState
             icon={"error"}
             title={"There was a problem!"}
@@ -182,9 +186,9 @@ export function AvailableSlots() {
     return (
         <div className="slot-checker-container">
             <div className="slot-checker">
-                <div className="header">
-                    Slot Finder
-                </div>
+                {/*<div className="header">*/}
+                {/*    Slot Finder*/}
+                {/*</div>*/}
                 <div className="slot-toolbar-container">
                     <div className="slot-toolbar columns">
                         <div className="slot-toolbar-item-group selectors column is-narrow-desktop">
