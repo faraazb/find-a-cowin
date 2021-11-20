@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/find-a-cowin/static/css/main.47ec1b3d.chunk.css",
-    "main.js": "/find-a-cowin/static/js/main.13ade29f.chunk.js",
-    "main.js.map": "/find-a-cowin/static/js/main.13ade29f.chunk.js.map",
-    "runtime-main.js": "/find-a-cowin/static/js/runtime-main.bc982ee5.js",
-    "runtime-main.js.map": "/find-a-cowin/static/js/runtime-main.bc982ee5.js.map",
+    "main.css": "/find-a-cowin/static/css/main.86481897.chunk.css",
+    "main.js": "/find-a-cowin/static/js/main.aca99389.chunk.js",
+    "main.js.map": "/find-a-cowin/static/js/main.aca99389.chunk.js.map",
+    "runtime-main.js": "/find-a-cowin/static/js/runtime-main.b1808cfe.js",
+    "runtime-main.js.map": "/find-a-cowin/static/js/runtime-main.b1808cfe.js.map",
     "static/css/2.a8132a14.chunk.css": "/find-a-cowin/static/css/2.a8132a14.chunk.css",
-    "static/js/2.6d280035.chunk.js": "/find-a-cowin/static/js/2.6d280035.chunk.js",
-    "static/js/2.6d280035.chunk.js.map": "/find-a-cowin/static/js/2.6d280035.chunk.js.map",
-    "static/js/3.d50d1591.chunk.js": "/find-a-cowin/static/js/3.d50d1591.chunk.js",
-    "static/js/3.d50d1591.chunk.js.map": "/find-a-cowin/static/js/3.d50d1591.chunk.js.map",
+    "static/js/2.68a7c9af.chunk.js": "/find-a-cowin/static/js/2.68a7c9af.chunk.js",
+    "static/js/2.68a7c9af.chunk.js.map": "/find-a-cowin/static/js/2.68a7c9af.chunk.js.map",
+    "static/js/3.e70d3d0f.chunk.js": "/find-a-cowin/static/js/3.e70d3d0f.chunk.js",
+    "static/js/3.e70d3d0f.chunk.js.map": "/find-a-cowin/static/js/3.e70d3d0f.chunk.js.map",
     "index.html": "/find-a-cowin/index.html",
     "static/css/2.a8132a14.chunk.css.map": "/find-a-cowin/static/css/2.a8132a14.chunk.css.map",
-    "static/css/main.47ec1b3d.chunk.css.map": "/find-a-cowin/static/css/main.47ec1b3d.chunk.css.map",
-    "static/js/2.6d280035.chunk.js.LICENSE.txt": "/find-a-cowin/static/js/2.6d280035.chunk.js.LICENSE.txt",
+    "static/css/main.86481897.chunk.css.map": "/find-a-cowin/static/css/main.86481897.chunk.css.map",
+    "static/js/2.68a7c9af.chunk.js.LICENSE.txt": "/find-a-cowin/static/js/2.68a7c9af.chunk.js.LICENSE.txt",
     "static/media/_app.scss": "/find-a-cowin/static/media/VictorMonoSemiBoldItalic.287fec83.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.bc982ee5.js",
+    "static/js/runtime-main.b1808cfe.js",
     "static/css/2.a8132a14.chunk.css",
-    "static/js/2.6d280035.chunk.js",
-    "static/css/main.47ec1b3d.chunk.css",
-    "static/js/main.13ade29f.chunk.js"
+    "static/js/2.68a7c9af.chunk.js",
+    "static/css/main.86481897.chunk.css",
+    "static/js/main.aca99389.chunk.js"
   ]
 }
