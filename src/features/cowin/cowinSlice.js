@@ -15,8 +15,10 @@ import {
 const getCalendarByStarredCenters = () => {
     let status = {}
     const centers = JSON.parse(localStorage.getItem("starred"));
-    for (let center of centers) {
-        status[center] = 'idle'
+    if (centers) {
+        for (let center of centers) {
+            status[center] = 'idle'
+        }
     }
     return status;
 }

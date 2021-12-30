@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {Button, H1, H3, Icon, Intent, NonIdealState, Spinner} from "@blueprintjs/core";
+import {Button, H3, Intent, Spinner} from "@blueprintjs/core";
 import "./_starred-centers.scss";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
@@ -8,7 +8,7 @@ import {fetchCalendarByCenter, selectCalendarByCenter} from "../cowin/cowinSlice
 import {formatDate} from "../../utils/DateUtilities";
 import {CenterCard} from "../finder/Center";
 
-export const StarredCenters = (props) => {
+export const StarredCenters = () => {
     const dispatch = useDispatch();
     const initializeStarred = !localStorage.getItem("starred");
     const starred = useSelector(selectStarredCenters);
@@ -64,7 +64,7 @@ export const StarredCenters = (props) => {
             </div>
             <div className="centers">
                 {
-                    starred.map((centerId, id) => (
+                    starred.map((centerId, _id) => (
                     getCenterContent(centerId)
                     ))
                 }
