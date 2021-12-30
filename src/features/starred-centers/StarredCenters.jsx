@@ -64,8 +64,17 @@ export const StarredCenters = () => {
             </div>
             <div className="centers">
                 {
-                    starred.map((centerId, _id) => (
-                    getCenterContent(centerId)
+                    starred.length === 0 && <div className="bp3-callout bp3-intent-warning">
+                        <h4 className="bp3-heading">
+                            No starred centers!
+                        </h4>
+                        Mark centers as starred using the <Button small={true} outlined={true}
+                                                                  icon={"star"} text={"Star"}/> button.
+                    </div>
+                }
+                {
+                    starred.length > 0 && starred.map((centerId, _id) => (
+                        getCenterContent(centerId)
                     ))
                 }
             </div>
