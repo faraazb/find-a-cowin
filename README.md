@@ -17,6 +17,7 @@ Visit https://faraazb.github.io/find-a-cowin/ and select your state and district
 * Multiple keyword search
 
   ![keyword search]
+* Starred centers
 * Table and Tags view for Sessions of each center
 * Extensive filtering: Fee (Free/Paid), Age category, Vaccine (Covaxin, Covishield, Sputnik V)
 * Automatic data refresh at selected interval
