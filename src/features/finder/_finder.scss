@@ -29,7 +29,7 @@
     /*box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;*/
 }
 
-.header {
+.slot-checker .header {
     font-family: "Inter", sans-serif;
     font-size: 2.2rem;
     margin: 10px 10px 20px 20px;
@@ -176,6 +176,10 @@
     margin-left: 15px;
     margin-bottom: 10px;
     overflow: auto;
+}
+
+.sessions-skeleton {
+    margin: 10px 10px;
 }
 
 .session {

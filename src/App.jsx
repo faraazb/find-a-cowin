@@ -8,6 +8,7 @@ import {FocusStyleManager, Alignment, Button, Classes, Navbar, NavbarDivider, Na
     NavbarHeading} from "@blueprintjs/core";
 import { Home } from './features/home/Home';
 import { FourOFour } from './features/FourOFour';
+import {StarredCenters} from "./features/starred-centers/StarredCenters";
 
 
 FocusStyleManager.onlyShowFocusOnTabs();
@@ -92,6 +93,10 @@ function App() {
             </Navbar>
             <div className="app-route">
                 <Switch>
+                    <Route path={"/starred"}>
+                        <StarredCenters />
+                    </Route>
+
                     <Route path="/about">
                         <Home />
                     </Route>

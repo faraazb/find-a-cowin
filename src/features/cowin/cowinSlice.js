@@ -12,6 +12,15 @@ import {
 	byCenterTotalDoses as sortByCenterTotalDoses 
 } from "../finder/sorting/sorting";
 
+const getCalendarByStarredCenters = () => {
+    let status = {}
+    const centers = JSON.parse(localStorage.getItem("starred"));
+    for (let center of centers) {
+        status[center] = 'idle'
+    }
+    return status;
+}
+
 const initialState = {
     states: [],
     districts: [],
@@ -28,12 +37,14 @@ const initialState = {
     calendarByDistrict: {
         centers: []
     },
+    calendarByCenter: {},
     vaccinationReports: {},
     publicReports: {},
     status: {
         states: 'idle',
         districts: 'idle',
         calendarByDistrict: 'idle',
+        calendarByCenter: getCalendarByStarredCenters(),
         vaccinationReports: 'idle',
         publicReports: 'idle'
     },
@@ -95,6 +106,26 @@ export const fetchCalendarByDistrict = createAsyncThunk('cowin/calendarByDistric
     return response.data;
 });
 
+// export const fetchCalendarByCenter = createAsyncThunk('cowin/calendarByCenter',
+//     async ({centerId, date}, {fulfillWithValue, rejectWithValue}) => {
+//     try {
+//         const response = await axios.get(
+//             `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByCenter?center_id=
+//             ${centerId}&date=${date}`);
+//         return fulfillWithValue({center: centerId, sessions: response.data["centers"]})
+//     } catch (error) {
+//         return rejectWithValue({id: centerId, message: error.response.data});
+//     }
+// });
+
+export const fetchCalendarByCenter = createAsyncThunk('cowin/calendarByCenter',
+async ({centerId, date}) => {
+    const response = await axios.get(
+        `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByCenter?center_id=
+    ${centerId}&date=${date}`);
+    return response.data["centers"];
+});
+
 export const fetchStates = createAsyncThunk('cowin/fetchStates',
     async () => {
     const response = await axios.get(
@@ -143,6 +174,10 @@ export const cowinSlice = createSlice({
             else {
                 state.selected.stateEnt.stateId = null;
             }
+        },
+        setCalendarByCenterStatus: (state, action) => {
+            const { centerId, fetchStatus } = action.payload;
+            state.status.calendarByCenter[centerId] = fetchStatus;
         },
         setSelectedDistrict: (state, action) => {
             const { districtName } = action.payload;
@@ -211,6 +246,21 @@ export const cowinSlice = createSlice({
             state.status.calendarByDistrict = 'failed';
             state.error.calendarByDistrict = action.error.message;
         },
+        [fetchCalendarByCenter.pending]: (state, action) => {
+            let center = action.meta.arg.centerId;
+            state.status.calendarByCenter[center] = 'idle'
+        },
+        [fetchCalendarByCenter.fulfilled]: (state, action) => {
+            let center = action.meta.arg.centerId;
+            state.status.calendarByCenter[center] = 'succeeded';
+            state.calendarByCenter[center] = action.payload;
+        },
+        [fetchCalendarByCenter.rejected]: (state, action) => {
+            // let center = action.error.id;
+            let center = action.meta.arg.centerId;
+            state.status.calendarByCenter[center] = 'failed';
+            state.error.calendarByCenter[center] = action.error.message;
+        },
         [fetchStates.pending]: (state) => {
             state.status.states = 'loading';
         },
@@ -267,10 +317,12 @@ export const { resetDistrictStore,
     setVaccineFilter,
 	setAgeFilter,
     setSelectedState,
-    setSelectedDistrict
+    setSelectedDistrict,
+    setCalendarByCenterStatus
 } = cowinSlice.actions;
 
 export const selectCalendarByDistrict = (state) => state.cowin.calendarByDistrict.centers;
+export const selectCalendarByCenter = (state) => state.cowin.calendarByCenter;
 
 export const selectKeywordFilter = (state) => state.cowin.filters.keywords;
 export const selectFeeFilters = (state) => state.cowin.filters.feeType;

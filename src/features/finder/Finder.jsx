@@ -23,6 +23,7 @@ import { FeeTypeFilters } from "./filters/FeeTypeFilters";
 import {formatDate} from "../../utils/DateUtilities";
 import Settings from "../settings/Settings";
 import { FilterPopover } from "./filters/FilterPopover";
+import {NavLink} from "react-router-dom";
 
 /*
 * A component which shows the Available Slots (active slots returned by CoWIN API)
@@ -165,7 +166,7 @@ export function Finder() {
     }, [statesFetchStatus, dispatch]);
 
     const handleStateChange = (state) => {
-        // TODO: Changed the dispatch order here
+        // Changed the dispatch order here
         // Reset the current District and Center list by resetting the store
         dispatch(resetDistrictStore());
         dispatch(resetCalendarByDistrictStore());
@@ -219,6 +220,11 @@ export function Finder() {
                         <div className="slot-toolbar-item-group column is-narrow-desktop">
                             <div className="slot-toolbar-item">
                                 <Button icon={"refresh"} text={"Refresh"} onClick={refreshData}/>
+                            </div>
+                            <div className="slot-toolbar-item">
+                                <NavLink to={"/starred"}>
+                                    <Button icon={"star"} text={"Starred"}/>
+                                </NavLink>
                             </div>
                             <div className="slot-toolbar-item">
                                 <FilterPopover />
