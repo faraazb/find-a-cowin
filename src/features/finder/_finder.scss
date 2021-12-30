@@ -1,5 +1,4 @@
 @import "~@blueprintjs/core/src/common/variables";
-// @import "~@blueprintjs/core/src/common/mixins";
 @import "~bulma/sass/utilities/_all.sass";
 @import "~bulma/sass/helpers/_all.sass";
 @import "~bulma/sass/grid/columns.sass";
@@ -39,12 +38,6 @@
     margin: 20px 20px 0 20px;
 }
 
-// .slot-toolbar {
-//     display: flex;
-//     flex-direction: row;
-//     margin: 0 -5px;
-// }
-
 .slot-toolbar-item-group {
     display: flex;
     flex-direction: row;
@@ -59,17 +52,9 @@
     // width: 100%;
 }
 
-// .slot-toolbar-item:nth-last-child(3) {
-//     margin-left: auto;
-// }
-
 .selectors {
     min-width: 320px;
 }
-
-// .selector {
-//     // width: 100%;
-// }
 
 .search {
     flex-grow: 1;

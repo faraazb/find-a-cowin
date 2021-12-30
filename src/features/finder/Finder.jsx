@@ -18,7 +18,7 @@ import {
 import "./_finder.scss";
 import { CenterCard } from "./Center";
 import {DistrictSelector2, StateSelector2} from "./Selectors";
-import {Button, Icon, Intent, NonIdealState, Spinner, TagInput} from "@blueprintjs/core";
+import {Button, ButtonGroup, Icon, Intent, NonIdealState, Spinner, TagInput} from "@blueprintjs/core";
 import { FeeTypeFilters } from "./filters/FeeTypeFilters";
 import {formatDate} from "../../utils/DateUtilities";
 import Settings from "../settings/Settings";
@@ -218,20 +218,14 @@ export function Finder() {
                             </div>
                         </div>
                         <div className="slot-toolbar-item-group column is-narrow-desktop">
-                            <div className="slot-toolbar-item">
+                            <ButtonGroup>
                                 <Button icon={"refresh"} text={"Refresh"} onClick={refreshData}/>
-                            </div>
-                            <div className="slot-toolbar-item">
                                 <NavLink to={"/starred"}>
                                     <Button icon={"star"} text={"Starred"}/>
                                 </NavLink>
-                            </div>
-                            <div className="slot-toolbar-item">
                                 <FilterPopover />
-                            </div>
-                            <div className="slot-toolbar-item">
                                 <Button icon={"settings"} text={"Settings"} onClick={toggleSettings}/>
-                            </div>
+                            </ButtonGroup>
                         </div>
                     </div>
                 </div>
