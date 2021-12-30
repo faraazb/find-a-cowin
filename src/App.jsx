@@ -9,7 +9,13 @@ import {FocusStyleManager, Alignment, Button, Classes, Navbar, NavbarDivider, Na
 import { Home } from './features/home/Home';
 import { FourOFour } from './features/FourOFour';
 import {StarredCenters} from "./features/starred-centers/StarredCenters";
+import { Position, Toaster } from "@blueprintjs/core";
 
+/** Singleton toaster instance. */
+export const AppToaster = Toaster.create({
+    className: "app-toaster",
+    position: Position.TOP,
+});
 
 FocusStyleManager.onlyShowFocusOnTabs();
 
@@ -93,11 +99,11 @@ function App() {
             </Navbar>
             <div className="app-route">
                 <Switch>
-                    <Route path={"/starred"}>
+                    <Route path="/starred" exact={true}>
                         <StarredCenters />
                     </Route>
 
-                    <Route path="/about">
+                    <Route path="/about" exact={true}>
                         <Home />
                     </Route>
 

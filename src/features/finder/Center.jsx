@@ -1,9 +1,10 @@
-import {Button, Intent, Tag} from "@blueprintjs/core";
+import {Button, H5, Intent, Tag} from "@blueprintjs/core";
 import React from "react";
 import { SessionTable, SessionTags } from "./Session";
 import {useDispatch, useSelector} from "react-redux";
 import {selectStarredCenters, setStarredCenters} from "../starred-centers/starredCentersSlice";
 import {setCalendarByCenterStatus} from "../cowin/cowinSlice";
+import {AppToaster} from "../../App";
 
 /*
 * Defines the Blueprintjs Intent color to use with a particular fee type
@@ -20,7 +21,7 @@ const feeType = {
 *
 * */
 function CenterCard(props) {
-    const { center, loading = false } = props;
+    const { center, loading = false, showStarButton = true } = props;
     // maybe lift viewType and starred to finder itself
     const viewType = useSelector((state => state.settings.calendarByDistrictView));
     const dispatch = useDispatch();
@@ -63,6 +64,16 @@ function CenterCard(props) {
     const starCenter = (event, centerId) => {
         dispatch(setCalendarByCenterStatus({centerId: centerId, fetchStatus: "idle"}))
         dispatch(setStarredCenters({centers: [...starred, centerId]}));
+        let starredNavLink = {
+            href: `${process.env.PUBLIC_URL}/starred`,
+            text: "See here"
+        };
+        AppToaster.show({
+            message: "Center starred!",
+            intent: Intent.SUCCESS,
+            icon: "star",
+            action: starredNavLink
+        });
     }
 
     const unstarCenter = (event, centerId) => {
@@ -73,32 +84,37 @@ function CenterCard(props) {
     const starButton = (centerId) => {
         console.log(starred);
         if (starred.includes(centerId)) {
-            return <Button icon={"star"} text={"Remove"} onClick={(event) => unstarCenter(event, center.center_id)} />
+            return <Button
+                className="center-star-button"
+                icon={"star"} text={"Remove"}
+                onClick={(event) => unstarCenter(event, center.center_id)}
+                small={true}
+            />
         }
-        return <Button icon={"star-empty"} text={"Star"} onClick={(event) => starCenter(event, center.center_id)} />
+        return <Button
+            className="center-star-button"
+            icon={"star-empty"} text={"Star"}
+            onClick={(event) => starCenter(event, center.center_id)}
+            small={true}
+        />
     }
-
-    let showStarredButton = true;
 
     return (
         <div key={center.center_id} className="center bp3-elevation-1">
             <div className="center-info-container">
-                <span className="center-name">{center.name}</span>
+                <H5>{center.name}</H5>
+            </div>
+            <div className="center-info-container center-actions">
                 <Tag className="center-fee-type" intent={feeType[center.fee_type]}>
                     {center.fee_type}
                 </Tag>
+                {center.vaccine_fees && center.vaccine_fees.map((vaccine_fee, id) => (
+                    <Tag key={id} className="fee-type">
+                        {vaccine_fee.vaccine}: ₹ {vaccine_fee.fee}
+                    </Tag>
+                ))}
                 {
-                    center.vaccine_fees &&
-                        <div className="vaccine-fee-tags">
-                            {center.vaccine_fees.map((vaccine_fee, id) => (
-                                <Tag key={id} className="fee-type">
-                                    {vaccine_fee.vaccine}: ₹ {vaccine_fee.fee}
-                                </Tag>
-                            ))}
-                        </div>
-                }
-                {
-                    showStarredButton && starButton(center.center_id)
+                    showStarButton && starButton(center.center_id)
                 }
             </div>
             <div className="center-info-container">

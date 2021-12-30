@@ -13,7 +13,7 @@ function SessionTags(props) {
     return (
         <>
             {sessions && sessions.map((session, id) => (
-                <Tag key={id} className="session" intent={Intent.PRIMARY} >
+                <Tag key={id} className="session" intent={Intent.PRIMARY} minimal={true}>
                     <Icon icon={"calendar"} />
                     <span className="session-info">{session.date}</span>
                     <span className="session-info">{session.vaccine}</span>

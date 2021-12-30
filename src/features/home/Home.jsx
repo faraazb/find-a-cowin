@@ -24,7 +24,7 @@ export function Home() {
 							</Tooltip2>
 						</a>
 					</div>
-					<H3 className="home-help-title">Help regarding Usage</H3>
+					<H3 className="home-help-title">Help regarding usage</H3>
 					<div className="home-help"> 
 						<table class="bp3-html-table bp3-html-table-bordered query-table">
 							<thead>
@@ -43,6 +43,10 @@ export function Home() {
 								<tr>
 								<td>What does the refresh button do?</td>
 								<td>It fetches the data again, without refreshing the page or resetting your filters.</td>
+								</tr>
+								<tr>
+								<td>Where are starred centers saved?</td>
+								<td>These are stored in your browser's local storage and cannot sync across devices.</td>
 								</tr>
 								<tr>
 								<td>What does auto-refresh under Settings do?</td>
