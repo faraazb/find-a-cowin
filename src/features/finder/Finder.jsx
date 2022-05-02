@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {
     fetchCalendarByDistrict,
@@ -16,14 +16,17 @@ import {
     setSelectedState
 } from "../cowin/cowinSlice";
 import "./_finder.scss";
-import { CenterCard } from "./Center";
-import {DistrictSelector2, StateSelector2} from "./Selectors";
-import {Button, ButtonGroup, Icon, Intent, NonIdealState, Spinner, TagInput} from "@blueprintjs/core";
-import { FeeTypeFilters } from "./filters/FeeTypeFilters";
+import {CenterCard} from "./Center";
+import {DistrictSelector, StateSelector} from "./Selectors";
+import {
+    Button, ButtonGroup, Icon, Intent,
+    NonIdealState, Spinner, TagInput
+} from "@blueprintjs/core";
+import {FeeTypeFilters} from "./filters/FeeTypeFilters";
 import {formatDate} from "../../utils/DateUtilities";
 import Settings from "../settings/Settings";
-import { FilterPopover } from "./filters/FilterPopover";
-import {NavLink} from "react-router-dom";
+import {FilterPopover} from "./filters/FilterPopover";
+import {useHistory} from "react-router-dom";
 
 /*
 * A component which shows the Available Slots (active slots returned by CoWIN API)
@@ -33,11 +36,11 @@ import {NavLink} from "react-router-dom";
 * */
 export function Finder() {
     const dispatch = useDispatch();
+    let history = useHistory();
     const calendarFetchStatus = useSelector((state) => state.cowin.status.calendarByDistrict);
     // Use the filtered calendarByDistrict data from the store
     const states = useSelector(selectAllStates);
     const districts = useSelector(selectAllDistricts);
-    // const centers = useSelector(selectFilteredCalendarByDistrict);
     const centers = useSelector(selectFilteredData);
     const unfilteredCenters = useSelector(selectCalendarByDistrict)
     const selectedState = useSelector(selectSelectedState);
@@ -55,49 +58,22 @@ export function Finder() {
         }
         let date = new Date();
         date = formatDate(date, '-');
-        console.log("Refreshing data", new Date().toLocaleTimeString(), {districtName: selectedDistrict.districtName});
+        // console.log("Refreshing data", new Date().toLocaleTimeString(), {districtName: selectedDistrict.districtName});
         dispatch(fetchCalendarByDistrict({districtId: selectedDistrict.districtId, date: date}));
     }
 
     useEffect(() => {
         if (autoRefresh) {
-            console.log("Old timeout:", intervalRef.current)
+            // console.log("Old timeout:", intervalRef.current)
             clearInterval(intervalRef.current);
             let intervalId = setInterval(() => {
                 refreshData()
             }, autoRefreshInterval);
             intervalRef.current = intervalId;
-            console.log("New timeout:", intervalRef.current)
+            // console.log("New timeout:", intervalRef.current)
             return () => clearInterval(intervalRef.current);
         }
     });
-
-    // useEffect(() => {
-    //     if (autoRefresh) {
-    //         let timer = setTimeout(() => {
-    //                 refreshData();
-    //                 console.log("Refreshing data", new Date().toLocaleTimeString(), {districtName: selectedDistrict.districtName});
-    //             },
-    //             autoRefreshInterval
-    //         );
-    //         console.log("New timeout:", timer)
-    //         return () => clearTimeout(timer);
-    //     }
-    // });
-
-    // let timer;
-    // useEffect(() => {
-    //     if (autoRefresh) {
-    //         if (previousIntervalId) {
-    //             clearInterval(previousIntervalId)
-    //             console.log("Previous Interval:", previousIntervalId)
-    //         }
-    //         let intervalId = setInterval(refreshData, autoRefreshInterval)
-    //         console.log("New Interval:", intervalId)
-    //         setPreviousIntervalId(intervalId)
-    //         return () => clearInterval(intervalId);
-    //     }
-    // });
 
     /*
     * Decide what {content} to load in the "centers" div.
@@ -108,36 +84,33 @@ export function Finder() {
         content = <NonIdealState
             icon={"info-sign"}
             title={"Select State and District"}
-        ><div>
-            <Icon icon={"lightbulb"} intent={Intent.WARNING}/>
-            Tip: Use the refresh button to refresh the data
-        </div></NonIdealState>
-    }
-    else if (calendarFetchStatus === "loading") {
-        content = <Spinner className={"centers-loading-spinner"} intent={Intent.PRIMARY} size={50} />
-    }
-    else if (calendarFetchStatus === "succeeded") {
+        >
+            <div>
+                <Icon icon={"lightbulb"} intent={Intent.WARNING}/>
+                Tip: Use the refresh button to refresh the data
+            </div>
+        </NonIdealState>
+    } else if (calendarFetchStatus === "loading") {
+        content = <Spinner className={"centers-loading-spinner"} intent={Intent.PRIMARY} size={50}/>
+    } else if (calendarFetchStatus === "succeeded") {
         if (centers.length > 0) {
             content = centers.map((center, id) => (
-                <CenterCard key={id} center={center} />
+                <CenterCard key={id} center={center}/>
             ));
-        }
-        else {
+        } else {
             content = <NonIdealState
                 icon={"zoom-out"}
                 title={"No centers match your query."}
                 description={"It might be helpful to divide your query into multiple keywords."}
             />
         }
-    }
-    else if (calendarFetchStatus === "succeeded" && unfilteredCenters.length === 0) {
+    } else if (calendarFetchStatus === "succeeded" && unfilteredCenters.length === 0) {
         content = <NonIdealState
             icon={"issue"}
             title={"Currently, no slots are available."}
             description={"Please check again after sometime."}
         />
-    }
-    else if (calendarFetchStatus === "failed") {
+    } else if (calendarFetchStatus === "failed") {
         content = <NonIdealState
             icon={"error"}
             title={"There was a problem!"}
@@ -184,27 +157,28 @@ export function Finder() {
         dispatch(fetchCalendarByDistrict({districtId: district.district_id, date: date}));
     }
 
+    const toStarred = () => {
+        history.push("/starred")
+    }
+
     return (
         <div className="slot-checker-container">
             <div className="slot-checker">
-                {/*<div className="header">*/}
-                {/*    Slot Finder*/}
-                {/*</div>*/}
                 <div className="slot-toolbar-container">
-                    <div className="slot-toolbar columns">
-                        <div className="slot-toolbar-item-group selectors column is-narrow-desktop">
-                            <StateSelector2
+                    <div className="slot-toolbar">
+                        <div className="slot-toolbar-item-group selectors">
+                            <StateSelector
                                 states={states}
                                 selectedState={selectedState}
                                 setState={handleStateChange}
                             />
-                            <DistrictSelector2
+                            <DistrictSelector
                                 districts={districts}
                                 selectedDistrict={selectedDistrict}
                                 setDistrict={handleDistrictChange}
                             />
                         </div>
-                        <div className="slot-toolbar-item-group column">
+                        <div className="slot-toolbar-item-group search-fee-type">
                             <TagInput
                                 className="slot-toolbar-item search"
                                 leftIcon={"search"}
@@ -217,13 +191,11 @@ export function Finder() {
                                 <FeeTypeFilters alignmentVertical={false}/>
                             </div>
                         </div>
-                        <div className="slot-toolbar-item-group column is-narrow-desktop">
-                            <ButtonGroup>
+                        <div className="slot-toolbar-item-group menu-buttons">
+                            <ButtonGroup className="menu-button-group" fill={true}>
                                 <Button icon={"refresh"} text={"Refresh"} onClick={refreshData}/>
-                                <NavLink to={"/starred"}>
-                                    <Button icon={"star"} text={"Starred"}/>
-                                </NavLink>
-                                <FilterPopover />
+                                <Button icon={"star"} text={"Starred"} onClick={toStarred}/>
+                                <FilterPopover/>
                                 <Button icon={"settings"} text={"Settings"} onClick={toggleSettings}/>
                             </ButtonGroup>
                         </div>

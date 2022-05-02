@@ -1,6 +1,7 @@
-import { Button, Classes, H1, H3, TagInput } from "@blueprintjs/core";
-import { Tooltip2 } from "@blueprintjs/popover2";
 import React from "react";
+import {ReactComponent as Logo} from "../../find-a-cowin.svg";
+import { Button, Classes, H3, TagInput } from "@blueprintjs/core";
+import { Tooltip2 } from "@blueprintjs/popover2";
 import "./_home.scss"
 
 
@@ -9,7 +10,7 @@ export function Home() {
         <div id="home">
             <div className="home-container">
 				<div className="home-content">
-					<H1 className="home-title">Find-a-CoWIN</H1>
+					<Logo className="logo about-logo"/>
 					<span>A slot finder/checker for the CoWIN vaccination platform</span>
 					<span>built using the CoWIN Public API.</span>
 					<div className="home-links">
@@ -26,7 +27,7 @@ export function Home() {
 					</div>
 					<H3 className="home-help-title">Help regarding usage</H3>
 					<div className="home-help"> 
-						<table class="bp3-html-table bp3-html-table-bordered query-table">
+						<table className="bp3-html-table bp3-html-table-bordered query-table">
 							<thead>
 								<tr>
 								<th>Query</th>
@@ -58,5 +59,5 @@ export function Home() {
 				</div>
             </div>
         </div>
-    )
+    );
 }

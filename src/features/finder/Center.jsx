@@ -81,7 +81,6 @@ function CenterCard(props) {
     }
 
     const starButton = (centerId) => {
-        console.log(starred);
         if (starred.includes(centerId)) {
             return <Button
                 className="center-star-button"

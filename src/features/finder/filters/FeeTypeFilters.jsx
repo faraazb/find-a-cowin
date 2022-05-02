@@ -21,27 +21,26 @@ function FeeTypeFilters(props) {
     }
 
     return (
-        <div className="fee-types">
-            <ControlGroup
-                fill={true}
-                vertical={alignmentVertical}
-            >
-                <Checkbox
-                    className="fee-type-checkbox"
-                    label={"Free"}
-                    checked={feeFilter["Free"]}
-                    onChange={(event) => feeTypeChange(event, "Free")}
-                    alignIndicator={Alignment.RIGHT}
-                />
-                <Checkbox
-                    className="fee-type-checkbox"
-                    label={"Paid"}
-                    checked={feeFilter["Paid"]}
-                    onChange={(event) => feeTypeChange(event, "Paid")}
-                    alignIndicator={Alignment.RIGHT}
-                />
-            </ControlGroup>
-        </div>
+        <ControlGroup
+            className="fee-types"
+            fill={true}
+            vertical={alignmentVertical}
+        >
+            <Checkbox
+                className="fee-type-checkbox"
+                label={"Free"}
+                checked={feeFilter["Free"]}
+                onChange={(event) => feeTypeChange(event, "Free")}
+                alignIndicator={Alignment.RIGHT}
+            />
+            <Checkbox
+                className="fee-type-checkbox"
+                label={"Paid"}
+                checked={feeFilter["Paid"]}
+                onChange={(event) => feeTypeChange(event, "Paid")}
+                alignIndicator={Alignment.RIGHT}
+            />
+        </ControlGroup>
     )
 }
 

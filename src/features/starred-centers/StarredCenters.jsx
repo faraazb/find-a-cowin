@@ -24,7 +24,6 @@ export const StarredCenters = () => {
     useEffect(() => {
         let date = new Date();
         date = formatDate(date, '-');
-        console.log(fetchStatus)
         for (let centerId of starred) {
             if (fetchStatus[centerId] === "idle") {
                 dispatch(fetchCalendarByCenter({centerId: centerId, date: date}))

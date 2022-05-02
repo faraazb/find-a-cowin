@@ -1,17 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
-@import "../node_modules/bulma/sass/utilities/_all.sass";
-@import "../node_modules/bulma/sass/grid/columns.sass";
 @import "~@blueprintjs/core/src/common/variables";
-// @import "~@blueprintjs/core/src/common/variables";
-// @import "~@blueprintjs/core/src/common/mixins";
+@import "~bulma/sass/utilities/_all.sass";
+@import "~bulma/sass/helpers/_all.sass";
+@import "~bulma/sass/grid/columns.sass";
 
-@font-face {
-    font-family: "VictorMono";
-    src: local("VictorMono"), url("./fonts/VictorMonoSemiBoldItalic.ttf") format("truetype");
-    font-weight: 600;
-  }
-  
 
 #app {
     display: flex;
@@ -19,8 +11,16 @@
     height: 100vh;
 }
 
-#find-a-cowin {
-    text-decoration: none;
+.logo {
+    height: 13px;
+    width: auto;
+    fill: $pt-text-color;
+    stroke: #182026;
+    stroke-width: 0.1px;
+    .#{$ns}-dark & {
+        fill: $pt-dark-text-color;
+        stroke: #f5f8fa;
+    }
 }
 
 .app-route {
@@ -32,6 +32,8 @@
     }
 }
 
-.navigation-header {
-    font-family: 'VictorMono';
+.bp3-navbar-divider.navigation-divider {
+    @include mobile {
+        margin: 0 0;
+    }
 }

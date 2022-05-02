@@ -1,6 +1,6 @@
+import React from "react";
 import {Button, MenuItem} from "@blueprintjs/core";
 import {Select} from "@blueprintjs/select";
-import React from "react";
 
 /*
 * Simple filtering function, extracted here so that it doesn't have to repeated in both
@@ -25,16 +25,8 @@ const filterList = (query, title, _index, exactMatch) => {
 *  differences through props.
 *
 * */
-const StateSelector = (props) => {
-    const { setState, selectedState, states } = props;
-    // const states = useSelector(selectAllStates);
-
-    // // Fetch states for StateSelector when it mounts
-    // useEffect(() => {
-    //     if (statesFetchStatus === "idle") {
-    //         dispatch(fetchStates());
-    //     }
-    // }, [statesFetchStatus, dispatch]);
+const StateSelector = React.memo((props) => {
+    const {setState, selectedState, states} = props;
 
     const renderInputValue = (state) => state.state_name;
 
@@ -44,7 +36,7 @@ const StateSelector = (props) => {
     }
 
     // Render a Blueprintjs Menu Item for every state
-    const renderItem = (state, { handleClick, _modifiers, _query}) => {
+    const renderItem = (state, {handleClick, _modifiers, _query}) => {
         return (
             <MenuItem key={state.state_id} text={state.state_name} onClick={handleClick}/>
         );
@@ -58,34 +50,36 @@ const StateSelector = (props) => {
     }
 
     return (
-        <div className="selector slot-toolbar-item">
+        <div className="slot-toolbar-item selector">
             <Select
+                fill={true}
                 items={states}
                 popoverProps={{popoverClassName: "selector-popover", minimal: true}}
                 inputValueRenderer={renderInputValue}
                 itemRenderer={renderItem}
                 onItemSelect={handleValueChange}
                 itemPredicate={filterStates}
-                noResults={<MenuItem disabled={true} text="No results." />}
+                noResults={<MenuItem disabled={true} text="No results."/>}
             >
-                <Button fill={true} text={selectedState.stateName} rightIcon="caret-down" />
+                <Button fill={true} text={selectedState.stateName} rightIcon="caret-down"/>
             </Select>
         </div>
     )
-}
+});
+
 
 /*
 * DistrictSelector uses the {@link https://blueprintjs.com/docs/#select Blueprintjs Select} component,
 * provides a list of districts to filter and choose from.
 *
 * */
-const DistrictSelector = (props) => {
-    const { setDistrict, selectedDistrict, districts } = props;
+const DistrictSelector = React.memo((props) => {
+    const {setDistrict, selectedDistrict, districts} = props;
     // const districts = useSelector(selectAllDistricts);
 
     const renderDistrictInputValue = (district) => district.district_name;
 
-    const renderDistrictItem = (district, { handleClick, _modifiers, _query }) => {
+    const renderDistrictItem = (district, {handleClick, _modifiers, _query}) => {
         return (
             <MenuItem key={district.district_id} text={district.district_name} onClick={handleClick}/>
         )
@@ -103,23 +97,21 @@ const DistrictSelector = (props) => {
     }
 
     return (
-        <div className="selector slot-toolbar-item">
+        <div className="slot-toolbar-item selector">
             <Select
+                fill={true}
                 items={districts}
                 popoverProps={{popoverClassName: "selector-popover", minimal: true}}
                 inputValueRenderer={renderDistrictInputValue}
                 itemRenderer={renderDistrictItem}
                 onItemSelect={districtSelected}
                 itemPredicate={filterDistricts}
-                noResults={<MenuItem disabled={true} text="No results." />}
+                noResults={<MenuItem disabled={true} text="No results."/>}
             >
-                <Button fill={true} text={selectedDistrict.districtName} rightIcon="caret-down" />
+                <Button fill={true} text={selectedDistrict.districtName} rightIcon="caret-down"/>
             </Select>
         </div>
     )
-}
+});
 
-const StateSelector2 = React.memo(StateSelector);
-const DistrictSelector2 = React.memo(DistrictSelector);
-
-export { StateSelector, StateSelector2, DistrictSelector, DistrictSelector2};
+export {StateSelector, DistrictSelector};
