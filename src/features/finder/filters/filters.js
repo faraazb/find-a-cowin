@@ -92,25 +92,25 @@ Since multiple, disconnected ranges like 18+ and 45+ can be checked by the user,
 function which can take multiple min. or max. values and other parameters is used.
 */
 export function byAgeCategory(centers, categories) {
-    const {eighteenAbove, eighteenFortyFour, fortyFiveAbove} = categories;
+    const {eighteenAbove: fifteenAbove, eighteenFortyFour, fortyFiveAbove} = categories;
     let values, filterFields, joins;
     let min = "min_age_limit";
     let max = "max_age_limit";
-    if (eighteenAbove === eighteenFortyFour && eighteenAbove === fortyFiveAbove) {
+    if (fifteenAbove === eighteenFortyFour && fifteenAbove === fortyFiveAbove) {
         return centers;
     }
-    if (eighteenAbove && eighteenFortyFour) {
-        values = [18, 44];
+    if (fifteenAbove && eighteenFortyFour) {
+        values = [15, 44];
         filterFields = [min, max];
         joins = [false];
     }
-    else if (eighteenAbove && fortyFiveAbove) {
+    else if (fifteenAbove && fortyFiveAbove) {
         // filter centers with:
         // (min = 18 OR min = 45) AND max != 44
         // a false in joins means OR, a true means AND
         // filter centers with: 
         // (filterFields[0] = values[0] {joins[0]} filterFields[1] = values[1]) AND filterFields[2] != values[2]
-        values = [18, 45, 44];
+        values = [15, 45, 44];
         filterFields = [min, min, max];
         joins = [false, true];
     }
@@ -119,8 +119,8 @@ export function byAgeCategory(centers, categories) {
         filterFields = [min, max];
         joins = [false];
     }
-    else if (eighteenAbove) {
-        values = [18, undefined];
+    else if (fifteenAbove) {
+        values = [15, undefined];
         filterFields = [min, max];
         joins = [true];
     }

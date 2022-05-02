@@ -85,7 +85,7 @@ const initialState = {
         ages: {
             minAge: null,
             maxAge: null,
-			eighteenAbove: true,
+			fifteenAbove: true,
 			eighteenFortyFour: true,
 			fortyFiveAbove: true
         }
@@ -107,18 +107,6 @@ export const fetchCalendarByDistrict = createAsyncThunk('cowin/calendarByDistric
             ${districtId}&date=${date}`);
     return response.data;
 });
-
-// export const fetchCalendarByCenter = createAsyncThunk('cowin/calendarByCenter',
-//     async ({centerId, date}, {fulfillWithValue, rejectWithValue}) => {
-//     try {
-//         const response = await axios.get(
-//             `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByCenter?center_id=
-//             ${centerId}&date=${date}`);
-//         return fulfillWithValue({center: centerId, sessions: response.data["centers"]})
-//     } catch (error) {
-//         return rejectWithValue({id: centerId, message: error.response.data});
-//     }
-// });
 
 export const fetchCalendarByCenter = createAsyncThunk('cowin/calendarByCenter',
 async ({centerId, date}) => {
@@ -222,8 +210,8 @@ export const cowinSlice = createSlice({
 		setAgeFilter: (state, action) => {
 			const { age, value } = action.payload;
 			switch (age) {
-				case "age-18-above":
-					state.filters.ages.eighteenAbove = value;
+				case "age-15-above":
+					state.filters.ages.fifteenAbove = value;
 					break;
 				case "age-18-44":
 					state.filters.ages.eighteenFortyFour = value;
@@ -336,10 +324,9 @@ export const selectAllDistricts = (state) => state.cowin.districts;
 export const selectSelectedState = (state) => state.cowin.selected.stateEnt;
 export const selectSelectedDistrict = (state) => state.cowin.selected.districtEnt;
 
-export const selectVaxReportsLastThirtyDays = (state) => state.cowin.vaccinationReports.last30DaysVaccination;
-
-export const selectPublicReports = (state) => state.cowin.publicReports;
-export const selectPublicReportsBeneficiaries = (state) => state.cowin.publicReports.getBeneficiariesGroupBy;
+// export const selectVaxReportsLastThirtyDays = (state) => state.cowin.vaccinationReports.last30DaysVaccination;
+// export const selectPublicReports = (state) => state.cowin.publicReports;
+// export const selectPublicReportsBeneficiaries = (state) => state.cowin.publicReports.getBeneficiariesGroupBy;
 
 export const selectFilteredData = createSelector(
     selectCalendarByDistrict,

@@ -58,9 +58,9 @@ export function FilterPopover() {
 						<H6>Age</H6>
 						<Checkbox
 							className="filter-item"
-							id="age-18-above"
-							label={"18 and above"}
-							checked={ageCategoryChecked.eighteenAbove}
+							id="age-15-above"
+							label={"15 and above"}
+							checked={ageCategoryChecked.fifteenAbove}
 							onChange={handleAgeCategoryChange}
 							alignIndicator={Alignment.RIGHT}
 						/>

@@ -24,6 +24,9 @@
 }
 
 .app-route {
+    @include mobile {
+        overflow-x: clip;
+    }
     overflow-y: scroll;
     flex-grow: 1;
 
