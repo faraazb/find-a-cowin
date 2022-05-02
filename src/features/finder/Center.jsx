@@ -1,6 +1,6 @@
 import {Button, H5, Intent, Tag} from "@blueprintjs/core";
 import React from "react";
-import { SessionTable, SessionTags } from "./Session";
+import {SessionTable, SessionTags} from "./Session";
 import {useDispatch, useSelector} from "react-redux";
 import {selectStarredCenters, setStarredCenters} from "../starred-centers/starredCentersSlice";
 import {setCalendarByCenterStatus} from "../cowin/cowinSlice";
@@ -21,7 +21,7 @@ const feeType = {
 *
 * */
 function CenterCard(props) {
-    const { center, loading = false, showStarButton = true } = props;
+    const {center, loading = false, showStarButton = true} = props;
     // maybe lift viewType and starred to finder itself
     const viewType = useSelector((state => state.settings.calendarByDistrictView));
     const dispatch = useDispatch();
@@ -40,7 +40,7 @@ function CenterCard(props) {
                         <Tag key={1} className="fee-type bp3-skeleton">Loading</Tag>
                         <Tag key={1} className="fee-type bp3-skeleton">Loading</Tag>
                     </div>
-                    <Button className={"bp3-skeleton"} icon={"star"} />
+                    <Button className={"bp3-skeleton"} icon={"star"}/>
                 </div>
                 <div className="center-info-container">
                     <span className="center-info bp3-skeleton">Loading</span>
@@ -55,10 +55,9 @@ function CenterCard(props) {
 
     let content;
     if (viewType === "table") {
-        content = <SessionTable sessions={center.sessions} />
-    }
-    else if (viewType === "tags") {
-        content = <SessionTags sessions={center.sessions} />
+        content = <SessionTable sessions={center.sessions}/>
+    } else if (viewType === "tags") {
+        content = <SessionTags sessions={center.sessions}/>
     }
 
     const starCenter = (event, centerId) => {
@@ -119,7 +118,9 @@ function CenterCard(props) {
             </div>
             <div className="center-info-container">
                 <span className="center-info">{center.address}</span>
-                <span className="center-info block-name">[{center.block_name}]</span>
+                {center.block_name !== "Not Applicable" &&
+                    <span className="center-info block-name">[Block: {center.block_name}]</span>
+                }
             </div>
             <div className="sessions">
                 {content}
@@ -128,4 +129,4 @@ function CenterCard(props) {
     )
 }
 
-export { CenterCard };
+export {CenterCard};
