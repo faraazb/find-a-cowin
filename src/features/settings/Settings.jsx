@@ -81,13 +81,10 @@ function Settings(props) {
                     </div>
                 </Card>
                 <Card className="settings-item-group">
-                    <Switch
-                        className="settings-item"
-                        label={"Auto refresh data"}
-                        checked={autoRefresh}
-                        onChange={handleAutoRefreshChange}
-                        alignIndicator={"right"}
-                    />
+                    <div className="settings-item">
+                        <label>Auto-refresh</label>
+                        <Switch checked={autoRefresh} onChange={handleAutoRefreshChange} />
+                    </div>
                     <div className="settings-item bp3-large">
                         <span>Auto-refresh Interval</span>
                         <div className="bp3-html-select">
