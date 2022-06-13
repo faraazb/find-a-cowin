@@ -30,6 +30,13 @@ export function FilterPopover() {
 						<H6>Vaccines</H6>
 						<Checkbox
 							className="filter-item"
+							label={"Covishield"}
+							checked={vaccineFilter.covishield.checked}
+							onChange={(event) => handleVaccineChange(event, "COVISHIELD")}
+							alignIndicator={Alignment.RIGHT}
+						/>
+						<Checkbox
+							className="filter-item"
 							label={"Covaxin"}
 							checked={vaccineFilter.covaxin.checked}
 							onChange={(event) => handleVaccineChange(event, "COVAXIN")}
@@ -37,9 +44,16 @@ export function FilterPopover() {
 						/>
 						<Checkbox
 							className="filter-item"
-							label={"Covishield"}
-							checked={vaccineFilter.covishield.checked}
-							onChange={(event) => handleVaccineChange(event, "COVISHIELD")}
+							label={"Covovax"}
+							checked={vaccineFilter.covovax.checked}
+							onChange={(event) => handleVaccineChange(event, "COVOVAX")}
+							alignIndicator={Alignment.RIGHT}
+						/>
+						<Checkbox
+							className="filter-item"
+							label={"Corbevax"}
+							checked={vaccineFilter.corbevax.checked}
+							onChange={(event) => handleVaccineChange(event, "CORBEVAX")}
 							alignIndicator={Alignment.RIGHT}
 						/>
 						<Checkbox

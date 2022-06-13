@@ -71,15 +71,23 @@ const initialState = {
         vaccines: {
             covaxin: {
                 name: "COVAXIN",
-                checked: true
+                checked: false
+            },
+            covovax: {
+                name: "COVOVAX",
+                checked: false
+            },
+            corbevax: {
+                name: "CORBEVAX",
+                checked: false
             },
             covishield: {
                 name: "COVISHIELD",
-                checked: true
+                checked: false
             },
             sputnik: {
                 name: "SPUTNIK V",
-                checked: true
+                checked: false
             }
         },
         ages: {
@@ -191,6 +199,12 @@ export const cowinSlice = createSlice({
             switch (vaccine) {
                 case "COVAXIN":
                     state.filters.vaccines.covaxin.checked = value;
+                    break;
+                case "COVOVAX":
+                    state.filters.vaccines.covovax.checked = value;
+                    break;
+                case "CORBEVAX":
+                    state.filters.vaccines.corbevax.checked = value;
                     break;
                 case "COVISHIELD":
                     state.filters.vaccines.covishield.checked = value;
