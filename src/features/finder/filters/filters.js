@@ -36,13 +36,19 @@ export function byKeyword(centers, keywords) {
 
 export function byAge(centers, ages) {
     const {minAge, maxAge} = ages
+    if (!minAge && !maxAge) {
+        return centers;
+    }
     let filteredCenters = filter(center => {
         return some(session => {
             if (minAge && maxAge) {
-                return session.min_age_limit === minAge && session.max_age_limit === maxAge;
+                return session.min_age_limit >= minAge && session.max_age_limit <= maxAge;
             }
             else if (minAge && !maxAge) {
-                return session.min_age_limit === minAge;
+                return session.min_age_limit >= minAge;
+            }
+            else if (!minAge && maxAge) {
+                return session.max_age_limit <= maxAge;
             }
         }, center.sessions);
     }, centers);
@@ -51,10 +57,13 @@ export function byAge(centers, ages) {
         let newCenter = clone(center)
         newCenter.sessions = filter(session => {
             if (minAge && maxAge) {
-                return session.min_age_limit === minAge && session.max_age_limit === maxAge;
+                return session.min_age_limit >= minAge && session.max_age_limit <= maxAge;
             }
             else if (minAge && !maxAge) {
-                return session.min_age_limit === minAge;
+                return session.min_age_limit >= minAge;
+            }
+            else if (!minAge && maxAge) {
+                return session.max_age_limit >= minAge
             }
         }, center.sessions);
         newCenters.push(newCenter)
@@ -86,7 +95,7 @@ function combineMultipleAgeConditions(session, ages, filterFields, joins) {
 }
 
 /* 
-Filters age by category, the if-else ladder determines what minimum and maximum values
+Filters age by category, the if-else conditions determine what minimum and maximum values
 to use for filtering depending on the categories selected (values array). 
 Since multiple, disconnected ranges like 18+ and 45+ can be checked by the user, a helper 
 function which can take multiple min. or max. values and other parameters is used.

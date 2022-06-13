@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Card, ControlGroup, Dialog, Icon, Switch} from "@blueprintjs/core";
+import {Button, Card, Dialog, Icon, Switch} from "@blueprintjs/core";
 import {useDispatch, useSelector} from "react-redux";
 import { setCalendarByDistrictAutoRefreshInterval, setCalendarByDistrictView} from "./settingsSlice";
 import "./_settings.scss"
@@ -64,12 +64,10 @@ function Settings(props) {
                 >
                 </Button>
             </div>
-            <div className="bp3-dialog-body">
-                <Card className="settings-item">
-                    <ControlGroup vertical={true}>
-                        <div className="settings-caption-vertical">
-                            View appointments of a Center as
-                        </div>
+            <div className="bp3-dialog-body settings-body">
+                <Card className="settings-item-group">
+                    <div className="settings-item">
+                        <span>View appointments of a Center as</span>
                         <div className="bp3-html-select">
                             <select onChange={handleViewTypeChange} value={view}>
                                 {
@@ -80,19 +78,18 @@ function Settings(props) {
                             </select>
                             <Icon icon={"double-caret-vertical"} />
                         </div>
-                    </ControlGroup>
+                    </div>
                 </Card>
-                <Card className="settings-item">
-                    <ControlGroup fill={true}>
-                        <Switch
-                            label={"Auto refresh data"}
-                            checked={autoRefresh}
-                            onChange={handleAutoRefreshChange}
-                            alignIndicator={"right"}
-                        />
-                        <div className="settings-caption-horizontal">
-                            Auto-refresh Interval
-                        </div>
+                <Card className="settings-item-group">
+                    <Switch
+                        className="settings-item"
+                        label={"Auto refresh data"}
+                        checked={autoRefresh}
+                        onChange={handleAutoRefreshChange}
+                        alignIndicator={"right"}
+                    />
+                    <div className="settings-item bp3-large">
+                        <span>Auto-refresh Interval</span>
                         <div className="bp3-html-select">
                             <select onChange={handleAutoRefreshValueChange}
                                     value={autoRefreshInt || ""}
@@ -106,7 +103,7 @@ function Settings(props) {
                             </select>
                             <Icon icon={"double-caret-vertical"} />
                         </div>
-                    </ControlGroup>
+                    </div>
                 </Card>
             </div>
         </Dialog>

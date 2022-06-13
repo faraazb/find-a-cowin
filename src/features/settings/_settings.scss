@@ -1,16 +1,29 @@
 .settings-dialog {
+    min-width: 10%;
     max-width: 90%;
+}
+
+.settings-body {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.settings-item-group {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
 }
 
 .settings-item {
     margin: 10px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 8px;
+    align-items: center;
+    justify-content: space-between;
 }
 
-
-.settings-caption-vertical {
-    margin-bottom: 10px;
-}
-
-.settings-caption-horizontal {
-    margin-left: 10px;
+.settings-item > .bp3-html-select > select{
+    min-width: 75px;
 }

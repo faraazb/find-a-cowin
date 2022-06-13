@@ -17,8 +17,14 @@ function SessionTags(props) {
                     <Icon icon={"calendar"} />
                     <span className="session-info">{session.date}</span>
                     <span className="session-info">{session.vaccine}</span>
-                    <span className="session-info">Dose 1: {session.available_capacity_dose1}</span>
-                    <span className="session-info">Dose 2: {session.available_capacity_dose2}</span>
+                    <span className="session-info">(D1: {session.available_capacity_dose1}</span>
+                    <span className="session-info">D2: {session.available_capacity_dose2})</span>
+                    {session.max_age_limit &&
+                        <span className="session-info">({session.min_age_limit} - {session.max_age_limit})</span>
+                    }
+                    {!session.max_age_limit &&
+                        <span className="session-info">({session.min_age_limit})</span>
+                    }
                 </Tag>
             ))}
         </>

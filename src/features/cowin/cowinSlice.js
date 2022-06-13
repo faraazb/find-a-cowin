@@ -2,7 +2,7 @@ import {createAsyncThunk, createSelector, createSlice} from "@reduxjs/toolkit";
 import axios from "axios"
 import { flow, partialRight, pickBy } from "lodash/fp";
 import {
-	byAgeCategory as filterByAgeCategory, 
+	byAge as filterByAge,
     byKeyword as filterByKeyword, 
     byVaccine as filterByVaccine, 
     isFree as filterIsFree, 
@@ -91,11 +91,11 @@ const initialState = {
             }
         },
         ages: {
-            minAge: null,
-            maxAge: null,
-			fifteenAbove: true,
-			eighteenFortyFour: true,
-			fortyFiveAbove: true
+            minAge: 12,
+            maxAge: ""
+			// fifteenAbove: true,
+			// eighteenFortyFour: true,
+			// fortyFiveAbove: true
         }
     },
     sort: {
@@ -216,27 +216,27 @@ export const cowinSlice = createSlice({
                     break;
             }
         },
-		// setAgeFilter: (state, action) => {
-		// 	const { minAge, maxAge } = action.payload;
-		// 	state.filters.ages.minAge = minAge;
-		// 	state.filters.ages.maxAge = maxAge;
-		// }
 		setAgeFilter: (state, action) => {
-			const { age, value } = action.payload;
-			switch (age) {
-				case "age-15-above":
-					state.filters.ages.fifteenAbove = value;
-					break;
-				case "age-18-44":
-					state.filters.ages.eighteenFortyFour = value;
-					break;
-				case "age-45-above":
-					state.filters.ages.fortyFiveAbove = value;
-					break;
-				default:
-					break;
-			}
+			const { minAge, maxAge } = action.payload;
+			state.filters.ages.minAge = minAge;
+			state.filters.ages.maxAge = maxAge;
 		}
+		// setAgeFilter: (state, action) => {
+		// 	const { age, value } = action.payload;
+		// 	switch (age) {
+		// 		case "age-15-above":
+		// 			state.filters.ages.fifteenAbove = value;
+		// 			break;
+		// 		case "age-18-44":
+		// 			state.filters.ages.eighteenFortyFour = value;
+		// 			break;
+		// 		case "age-45-above":
+		// 			state.filters.ages.fortyFiveAbove = value;
+		// 			break;
+		// 		default:
+		// 			break;
+		// 	}
+		// }
     },
     extraReducers: {
         [fetchCalendarByDistrict.pending]: (state) => {
@@ -373,7 +373,7 @@ export const selectFilteredData = createSelector(
             }
         }
 		if (ages) {
-			transformations.push(partialRight(filterByAgeCategory, [ages]))
+			transformations.push(partialRight(filterByAge, [ages]));
 		}
         if (keywords.length > 0) {
             transformations.push(partialRight(filterByKeyword, [keywords]));

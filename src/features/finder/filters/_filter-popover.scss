@@ -1,3 +1,16 @@
 .filter-group {
     margin-bottom: 15px;
 }
+
+.filter-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.filter-input-field {
+    min-width: 70px;
+    max-width: 90px;
+}
