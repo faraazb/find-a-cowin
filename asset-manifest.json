@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/find-a-cowin/static/css/main.f33ec74a.css",
-    "main.js": "/find-a-cowin/static/js/main.dd82fa00.js",
+    "main.js": "/find-a-cowin/static/js/main.81d8d827.js",
     "static/media/find-a-cowin.svg": "/find-a-cowin/static/media/find-a-cowin.1ba23df8f27e67e3f1bd8f4602d340f7.svg",
     "index.html": "/find-a-cowin/index.html",
     "main.f33ec74a.css.map": "/find-a-cowin/static/css/main.f33ec74a.css.map",
-    "main.dd82fa00.js.map": "/find-a-cowin/static/js/main.dd82fa00.js.map"
+    "main.81d8d827.js.map": "/find-a-cowin/static/js/main.81d8d827.js.map"
   },
   "entrypoints": [
     "static/css/main.f33ec74a.css",
-    "static/js/main.dd82fa00.js"
+    "static/js/main.81d8d827.js"
   ]
 }
