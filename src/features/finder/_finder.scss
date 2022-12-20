@@ -1,32 +1,26 @@
-@import "~@blueprintjs/core/src/common/variables";
-@import "~bulma/sass/utilities/_all.sass";
-@import "~bulma/sass/helpers/_all.sass";
-@import "~bulma/sass/grid/columns.sass";
-
+@use "~include-media/dist/include-media" as query;
 
 .slot-checker-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     height: 100%;
+    width: 100%;
     color: inherit;
-    /*margin: 20px 5% 20px 5%;*/
-
-    .#{$ns}-dark & {
-        background-color: $pt-dark-app-background-color;
-    }
 }
 
 .slot-checker {
     display: flex;
     flex-direction: column;
     height: 100%;
+    width: 100%;
     flex-grow: 1;
     overflow: auto;
+    max-width: 1216px;
 
-    @include desktop {
+    @include query.media(">=desktop") {
         margin: 2px 5% 2px 5%;
     }
-    /*box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;*/
 }
 
 .slot-toolbar-container {
@@ -49,7 +43,7 @@
 }
 
 .slot-toolbar-item-group:nth-last-child(1) {
-    @include widescreen {
+    @include query.media(">=1216px") {
         margin-left: auto;
     }
 }
@@ -79,6 +73,19 @@
 .slot-toolbar-item.selector {
     max-width: 180px;
     flex-grow: 1;
+    @include query.media(">=desktop") {
+        width: 140px;
+    }
+
+    .bp4-button-text {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .bp4-popover2-target {
+        width: 100%;
+    }
 }
 
 .search {
@@ -89,6 +96,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    @include query.media("<=tablet") {
+        display: none !important;
+    }
 }
 
 .fee-types {
@@ -99,7 +110,7 @@
     gap: 5px;
 }
 
-.bp3-control.fee-type-checkbox {
+.bp4-control.fee-type-checkbox {
     margin-bottom: 0;
 }
 
@@ -143,7 +154,6 @@
 }
 
 .center-name {
-    font-family: "Inter", sans-serif;
     font-size: 1rem;
 }
 
@@ -152,7 +162,7 @@
 }
 
 .vaccine-fee-tags {
-    @include mobile {
+    @include query.media("<=phone") {
         margin-top: 5px;
     }
 }
@@ -168,7 +178,7 @@
     margin: 10px 10px;
 }
 
-.session > .bp3-text-overflow-ellipsis {
+.session > .bp4-text-overflow-ellipsis {
     display: flex;
     column-gap: 4px;
 }

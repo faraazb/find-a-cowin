@@ -1,5 +1,3 @@
-@import "~bulma/sass/utilities/_all.sass";
-
 #four-o-four {
     height: 100%;
     display: flex;
@@ -20,12 +18,12 @@
 }
 
 .four-o-four-title {
-    font-family: 'Inter';
+    font-family: "Inter";
 }
 
 .four-o-four-title.big {
     font-size: 5rem;
-    font-family: 'Inter';
+    font-family: "Inter";
     margin-bottom: 20px;
 }
 

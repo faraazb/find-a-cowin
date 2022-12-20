@@ -1,9 +1,9 @@
 /*
-* Returns the date in dd%mm%yy using the specified separator:%
-* @param {Date} d Date object
-* @param {String} separator Separator to use
-* */
-function formatDate(date, separator, formatId)  {
+ * Returns the date in dd%mm%yy using the specified separator:%
+ * @param {Date} d Date object
+ * @param {String} separator Separator to use
+ * */
+function formatDate(date, separator, formatId) {
     let month = date.getMonth();
     let day = date.getDate().toString();
     let year = date.getFullYear().toString();

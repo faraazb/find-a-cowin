@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@use "~include-media/dist/include-media" as query;
+@import "~@blueprintjs/core/lib/scss/variables.scss";
 @import "~@blueprintjs/core/src/common/variables";
-@import "~bulma/sass/utilities/_all.sass";
-@import "~bulma/sass/helpers/_all.sass";
-@import "~bulma/sass/grid/columns.sass";
 
+body {
+    margin: 0;
+}
 
 #app {
     display: flex;
@@ -24,7 +25,7 @@
 }
 
 .app-route {
-    @include mobile {
+    @include query.media("<=phone") {
         overflow-x: clip;
     }
     overflow-y: scroll;
@@ -35,8 +36,8 @@
     }
 }
 
-.bp3-navbar-divider.navigation-divider {
-    @include mobile {
+.bp4-navbar-divider.navigation-divider {
+    @include query.media("<=phone") {
         margin: 0 0;
     }
 }

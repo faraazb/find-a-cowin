@@ -1,4 +1,4 @@
-@import "~bulma/sass/utilities/_all.sass";
+@use "~include-media/dist/include-media" as query;
 
 #home {
     height: 100%;
@@ -19,19 +19,26 @@
     align-items: center;
 }
 
+.home-description {
+    text-align: center;
+}
+
+.home-links {
+    margin-top: 20px;
+}
+
 .about-logo {
     height: 40px;
     margin-bottom: 15px;
 }
 
-.home-links {
-    margin: 20px 0;
-}
-
-
 .home-help {
     max-width: 75%;
-    @include mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    @include query.media("<=phone") {
         max-width: 85%;
     }
 }
