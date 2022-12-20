@@ -1,7 +1,4 @@
-import {
-    createAsyncThunk,
-    createSlice,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import axios from "axios";
 
@@ -124,7 +121,6 @@ export const cowinSlice = createSlice({
         setSelectedState: (state, action) => {
             const { state_name } = action.payload;
             state.selected.stateEnt.state_name = state_name;
-            state.status.calendarByDistrict = "idle";
             if (action.payload.state_id) {
                 state.selected.stateEnt.state_id = action.payload.state_id;
             } else {

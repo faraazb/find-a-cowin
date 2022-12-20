@@ -33,17 +33,12 @@ const Selector = React.memo((props) => {
     // Render a Blueprintjs Menu Item for every state
     const renderItem = (item, { handleClick }) => {
         return (
-            <MenuItem
-                key={item[id]}
-                text={item[label]}
-                onClick={handleClick}
-            />
+            <MenuItem key={item[id]} text={item[label]} onClick={handleClick} />
         );
     };
 
-
-    // Called by the {@link https://blueprintjs.com/docs/#select/select2 Blueprintjs Select} component whenever
-    // the query has a new input keyword. Select will provide query,
+    // Called by the {@link https://blueprintjs.com/docs/#select/select2 Blueprintjs Select}
+    // component whenever the query has a new input keyword. Select will provide query,
     // the State item {state_name: string, state_id: string} the index and exactMatch.
     const filter = (query, item, index, exactMatch) => {
         return filterList(query, item[label], index, exactMatch);
@@ -78,6 +73,6 @@ const Selector = React.memo((props) => {
             </Select2>
         </div>
     );
-})
+});
 
 export { Selector };
