@@ -89,7 +89,7 @@ function App() {
     });
 
     return (
-        <BrowserRouter basename={"/"}>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             <div id="app">
                 <Navbar>
                     <NavbarGroup align={Alignment.LEFT}>
